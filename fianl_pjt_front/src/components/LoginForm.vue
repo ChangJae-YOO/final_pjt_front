@@ -43,7 +43,8 @@ export default {
         username, password
       }
       this.$store.dispatch('login', payload)
-      this.$router.push({name: 'home'})
+      this.username = null,
+      this.password = null
     }
   }
 }

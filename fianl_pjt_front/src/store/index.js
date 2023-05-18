@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import router from '../router'
+import router from '../router'
 Vue.use(Vuex)
 import createPersistedState from 'vuex-persistedstate'
 const API_URL = 'http://127.0.0.1:8000'
@@ -11,6 +11,7 @@ export default new Vuex.Store({
   ],
   state: {
     token: null,
+    username: null,
   },
   getters: {
     isLogin(state) {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    SET_USERNAME(state, username) {
+      state.username = username
+    },
     SAVE_TOKEN(state, token) {
       state.token = token
     }
@@ -35,8 +39,14 @@ export default new Vuex.Store({
       })
       .then(res => {
         context.commit('SAVE_TOKEN', res.data.key)
+        context.dispatch('setUsername', username)
+        router.push({name: 'home'})
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        context.commit('SAVE_TOKEN', null)
+        context.commit('SET_USERNAME', null)
+        console.log(err)
+      })
     },
     signUp(context, payload) {
       const username = payload.username
@@ -54,6 +64,9 @@ export default new Vuex.Store({
         context.commit('SAVE_TOKEN', res.data.key)
       })
       .catch(err => console.log(err))
+    },
+    setUsername(context, username) {
+      context.commit('SET_USERNAME', username)
     }
   },
   modules: {
