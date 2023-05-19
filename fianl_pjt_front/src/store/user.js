@@ -56,6 +56,7 @@ actions: {
     })
     .then(res => {
       context.commit('SAVE_TOKEN', res.data.key)
+      context.commit('SET_USERNAME', username)
     })
     .catch(err => console.log(err))
   },

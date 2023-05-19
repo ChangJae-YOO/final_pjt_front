@@ -5,7 +5,14 @@
     <p>제목 : {{ movie?.title }}</p>
     <p>{{ movie?.overview }}</p>
     <img :src="getPosterUrl(movie?.poster_path)" alt="Movie Poster" width="300px" height="300px">
-    <DetailComment/>
+    <form @submit.prevent="createComment">
+      <label for="comment" class="form-label">댓글 입력</label>
+      <input class="form-control" id="comment" v-model="comment">
+    </form>
+    <div v-for="comment in commentSet" :key="comment.content">
+    <DetailComment
+    :Comment="comment"/>
+    </div>
   </div>
 </template>
 
@@ -21,7 +28,7 @@ export default {
   data() {
     return {
       movie: null,
-
+      commentSet: null,
     }
   },
   created() {
@@ -36,6 +43,8 @@ export default {
       .then((res) => {
         console.log(res)
         this.movie = res.data
+        this.commentSet = res.data.comment_set
+        console.log(this.commentSet)
       })
       .catch((err) => {
         console.log(err)
@@ -43,6 +52,27 @@ export default {
     },
     getPosterUrl(path) {
       return `https://image.tmdb.org/t/p/original${path}`
+    },
+    createComment() {
+      axios({
+        method: 'post',
+        url: `${API_URL}/movies/detail/${ this.$route.params.id }/comment_create/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.user.token}`,
+        },
+        data: {
+          content: this.comment,
+        }
+      })
+      .then((res) => {
+        this.userComment = res.data.content
+        this.userName = res.data.user_name
+        this.getMovieDetail()
+        this.comment = null
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     }
   }
 

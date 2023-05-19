@@ -49,7 +49,7 @@ export default {
       }
       this.$store.dispatch('signUp', payload)
       .then (() => {
-        this.$router.push('/accounts/login')
+        this.$router.push({name: 'home'})
       })
       .catch((err) => {
         console.error(err)
