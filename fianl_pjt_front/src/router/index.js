@@ -13,26 +13,31 @@ const routes = [
     name: 'home',
     component: HomeView
   },
+
   {
     path: '/detail/:id',
     name: 'detail',
     component: DetailView
   },
+
   {
     path: '/accounts/login',
     name: 'login',
     component: LoginView
   },
+
   {
     path: '/accounts/signup',
     name: 'signup',
     component: SignUpView
   },
+
   {
     path: '/search',
     name: 'search',
     component: SearchView
   },
+  
   // {
   //   path: '/about',
   //   name: 'about',

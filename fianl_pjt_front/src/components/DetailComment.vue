@@ -7,11 +7,10 @@
 <script>
 export default {
   name: 'DetailComment',
+
   props: {
     Comment: Object
   },
-  methods: {
-  }
 }
 </script>
 

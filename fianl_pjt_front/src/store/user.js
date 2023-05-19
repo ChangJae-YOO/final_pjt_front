@@ -1,26 +1,34 @@
 import axios from 'axios'
 import router from '../router'
+
 const API_URL = 'http://127.0.0.1:8000'
+
 export default {
+
 state: {
   token: null,
   username: null,
 },
+// token 으로 로그인여부 확인
 getters: {
   isLogin(state) {
     return state.token ? true : false
   },
 },
-mutations: {
 
+mutations: {
+  // 유저이름 저장
   SET_USERNAME(state, username) {
     state.username = username
   },
+  //토큰 저장
   SAVE_TOKEN(state, token) {
     state.token = token
   },
 },
+
 actions: {
+  //장고서버로 로그인
   login(context, payload){
     const username = payload.username
     const password = payload.password
@@ -42,6 +50,7 @@ actions: {
       console.log(err)
     })
   },
+  // 회원가입 및 장고서버 로그인
   signUp(context, payload) {
     const username = payload.username
     const useremail = payload.useremail
@@ -60,6 +69,7 @@ actions: {
     })
     .catch(err => console.log(err))
   },
+
   setUsername(context, username) {
     context.commit('SET_USERNAME', username)
   },

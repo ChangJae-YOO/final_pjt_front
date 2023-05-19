@@ -11,36 +11,16 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import axios from 'axios'
-const API_URL = 'http://127.0.0.1:8000'
+
 export default {
   name: 'HomeView',
+
+  // mapGetters 로그인 된상태면 isLogin true, 로그아웃상태면 false
+  // store.state.user 는 store에서 user에 대한 state를 갖고있음
   computed: {
     ...mapGetters(['isLogin']),
     username() {
       return this.$store.state.user.username
-    },
-  },
-  created() {
-    if (this.isLogin) {
-      this.getUserInfo()
-    }
-  },
-  methods: {
-    getUserInfo() {
-      axios({
-        method: 'get',
-        url: `${API_URL}/accounts/user/`,
-        headers: {
-          Authorization: `Token ${this.$store.state.user.token}`,
-        },
-      })
-        .then((res) => {
-          this.$store.commit('SET_USERNAME', res.data.username)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
     },
   },
 }
