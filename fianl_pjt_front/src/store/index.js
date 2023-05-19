@@ -12,19 +12,30 @@ export default new Vuex.Store({
   state: {
     token: null,
     username: null,
+    searchIuput: null,
+    movies: [],
   },
   getters: {
     isLogin(state) {
       return state.token ? true : false
-    }
+    },
+    getSearchInput: state => state.searchInput,
+    getMovies: state => state.movies,
   },
   mutations: {
+  
     SET_USERNAME(state, username) {
       state.username = username
     },
     SAVE_TOKEN(state, token) {
       state.token = token
-    }
+    },
+    SET_SEARCH_INPUT(state, searchInput) {
+      state.searchInput = searchInput
+    },
+    SET_MOVIES(state, movies) {
+      state.movies = movies
+    },
   },
   actions: {
     login(context, payload){
@@ -67,7 +78,11 @@ export default new Vuex.Store({
     },
     setUsername(context, username) {
       context.commit('SET_USERNAME', username)
-    }
+    },
+    setSearchResults({ commit }, { searchInput, movies }) {
+      commit('SET_SEARCH_INPUT', searchInput)
+      commit('SET_MOVIES', movies)
+    },
   },
   modules: {
   },
