@@ -20,8 +20,17 @@
 <script>
 import CardComponent from '@/components/CardComponent'
 import axios from 'axios'
+import { mapActions } from 'vuex'
 const API_URL = 'http://127.0.0.1:8000'
 export default {
+  beforeRouteLeave(to, from, next) {
+    if (to.name === 'detail') {
+      next()
+    } else {
+    this.clearMovies()
+    next()
+    }
+  },
   name: 'SearchView',
   components: {
     CardComponent,
@@ -44,7 +53,8 @@ export default {
       .catch((err) => {
         console.log(err)
       })
-    }
+    },
+    ...mapActions(['clearMovies']),
   },
   computed: {
     movies(){

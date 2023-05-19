@@ -48,6 +48,12 @@ export default {
         username, useremail, password1, password2
       }
       this.$store.dispatch('signUp', payload)
+      .then (() => {
+        this.$router.push('/accounts/login')
+      })
+      .catch((err) => {
+        console.error(err)
+      })
     }
   }
 }

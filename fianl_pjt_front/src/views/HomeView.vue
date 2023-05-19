@@ -18,7 +18,7 @@ export default {
   computed: {
     ...mapGetters(['isLogin']),
     username() {
-      return this.$store.state.username
+      return this.$store.state.user.username
     },
   },
   created() {
@@ -32,7 +32,7 @@ export default {
         method: 'get',
         url: `${API_URL}/accounts/user/`,
         headers: {
-          Authorization: `Token ${this.$store.state.token}`,
+          Authorization: `Token ${this.$store.state.user.token}`,
         },
       })
         .then((res) => {

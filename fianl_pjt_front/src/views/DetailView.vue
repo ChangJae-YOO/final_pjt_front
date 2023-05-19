@@ -5,18 +5,18 @@
     <p>제목 : {{ movie?.title }}</p>
     <p>{{ movie?.overview }}</p>
     <img :src="getPosterUrl(movie?.poster_path)" alt="Movie Poster" width="300px" height="300px">
-    <CommunityForm/>
+    <DetailComment/>
   </div>
 </template>
 
 <script>
-import CommunityForm from '@/components/CommunityForm'
+import DetailComment from '@/components/DetailComment'
 import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
 export default {
   name: 'DetailView',
   components: {
-    CommunityForm,
+    DetailComment,
   },
   data() {
     return {
