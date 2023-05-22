@@ -19,7 +19,7 @@
         </li>
       </ul>
       <div v-if="isLogin">
-        <a href="#" @click="logout" class="text-light" style="text-decoration:none">로그아웃</a>
+        <a href="#" @click="logout" class="text-light" style="text-decoration:none; margin-right:24px">로그아웃</a>
       </div>
       <div class="text-light" style="margin-right:24px" v-else>
       <a href="accounts/login" class="text-light" style="text-decoration:none">로그인</a> /
