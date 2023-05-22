@@ -69,6 +69,13 @@ actions: {
     })
     .catch(err => console.log(err))
   },
+  //로그아웃
+  logout(context) {
+    localStorage.removeItem('token')
+    localStorage.removeItem('username')
+    context.commit('SAVE_TOKEN', null)
+    context.commit('SET_USERNAME', null)
+  },
 
   setUsername(context, username) {
     context.commit('SET_USERNAME', username)

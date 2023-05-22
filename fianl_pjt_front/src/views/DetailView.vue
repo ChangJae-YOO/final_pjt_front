@@ -14,7 +14,10 @@
 
     <div v-for="commentDict in commentSet" :key="commentDict.id">
     <DetailComment
-    :Comment="commentDict"/>
+    :Comment="commentDict"
+    @commentDeleted="getMovieDetail"
+    @commentEdited="getMovieDetail"
+    />
     </div>
   </div>
 </template>
@@ -52,10 +55,8 @@ export default {
         url: `${API_URL}/movies/detail/${ this.$route.params.id }/`,
       })
       .then((res) => {
-        console.log(res)
         this.movie = res.data
         this.commentSet = res.data.comment_set
-        console.log(this.commentSet)
       })
       .catch((err) => {
         console.log(err)
@@ -85,8 +86,8 @@ export default {
         this.getMovieDetail()
         this.comment = null
       })
-      .catch((err) => {
-        console.log(err)
+      .catch(() => {
+        alert('로그인 하세용 ㅋㅋ')
       })
     }
   }
