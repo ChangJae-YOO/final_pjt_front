@@ -5,7 +5,8 @@
     <router-link :to="{name: 'login'}">로그인 화면</router-link> |
     <router-link :to="{name: 'signup'}">회원가입 화면</router-link> |
     <router-link :to="{name: 'detail'}">디테일화면</router-link> |
-    <router-link :to="{name: 'search'}">검색 화면</router-link>
+    <router-link :to="{name: 'search'}">검색 화면</router-link> |
+    <router-link :to="{name: 'theme'}">테마 화면</router-link>
   </div>
 </template>
 

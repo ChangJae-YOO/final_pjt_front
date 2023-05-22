@@ -5,6 +5,7 @@ import SignUpView from '../views/SignUpView.vue'
 import HomeView from '../views/HomeView.vue'
 import DetailView from '../views/DetailView.vue'
 import SearchView from '../views/SearchView.vue'
+import ThemeView from '../views/ThemeView.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -36,6 +37,12 @@ const routes = [
     path: '/search',
     name: 'search',
     component: SearchView
+  },
+
+  {
+    path: '/theme',
+    name: 'theme',
+    component: ThemeView
   },
   
   // {
