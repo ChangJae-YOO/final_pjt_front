@@ -17,6 +17,7 @@ export default new Vuex.Store({
   state: {
     searchInput: null,
     movies: [],
+    themeResult: null,
   },
 
   getters: {
@@ -31,9 +32,13 @@ export default new Vuex.Store({
     SET_MOVIES(state, movies) {
       state.movies = movies
     },
+    SET_THEME_RESULT(state, result){
+      state.themeResult = result
+    },
     CLEAR_MOVIES(state) {
       state.movies = []
     },
+
   },
   // setSearchResults -> 검색한 인풋값과 movies를 넘겨받아 값을 저장하는 mutation으로 넘겨짐
   actions: {

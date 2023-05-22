@@ -2,14 +2,15 @@
   <div>
     <h2>제목: {{ themeDetail.title }}</h2>
     <h4>설명: {{ themeDetail.description }}</h4>
-    <div v-for="question in questionSet" :key="question.id">
-      <ThemeQuestion :Question="question"/>
-    </div>
+    <ThemeQuestion 
+    :Question="questionSet[queryIndex]"
+    @query-to-question="plusIndex"/>
   </div>
 </template>
 
 <script>
 import ThemeQuestion from '@/components/ThemeQuestion'
+import router from '@/router'
 import axios from 'axios'
 
 const API_URL = 'http://127.0.0.1:8000'
@@ -23,9 +24,11 @@ export default {
   
   data() {
     return {
-      themeDetail: null,
-      questionSet: null,
-      queryLst: null, // v-model로 연결된 input변수
+      themeDetail: {},
+      questionSet: {},
+      queryDict: {},
+      queryIndex: 0,
+      queryLength: 0,
     }
   },
   
@@ -44,11 +47,34 @@ export default {
       .then((res) => {
         this.themeDetail = res.data
         this.questionSet = res.data.question_set
+
+        this.queryLength = Object.keys(this.questionSet).length
       })
       .catch((err) => {
         console.log(err)
       }) 
     },
+
+    plusIndex: function(inputData){
+      this.queryIndex++
+
+      if (this.queryIndex == this.queryLength){
+        this.$store.commit('SET_THEME_RESULT', this.queryDict)
+        console.log(this.queryDict)
+        router.push({
+          name:'themeResult',
+        })
+      }
+      
+      for (const key of Object.keys(inputData)){
+         if (key in this.queryDict && inputData[key] != null){
+          this.queryDict[key].push(inputData[key])
+         }
+         else if (inputData[key] != null){
+          this.queryDict[key] = [inputData[key]]
+         }
+      }
+    }
   }
 }
 </script>
