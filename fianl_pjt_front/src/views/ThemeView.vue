@@ -12,6 +12,7 @@
 import ThemeQuestion from '@/components/ThemeQuestion'
 import router from '@/router'
 import axios from 'axios'
+import { mapMutations} from 'vuex'
 
 const API_URL = 'http://127.0.0.1:8000'
 
@@ -42,7 +43,7 @@ export default {
      axios({
         method: 'get',
         // url: `${API_URL}/themes/detail/${ this.$route.params.id }/`,
-        url: `${API_URL}/themes/detail/7/`,
+        url: `${API_URL}/themes/detail/1/`,
       })
       .then((res) => {
         this.themeDetail = res.data
@@ -59,7 +60,7 @@ export default {
       this.queryIndex++
 
       if (this.queryIndex == this.queryLength){
-        this.$store.commit('SET_THEME_RESULT', this.queryDict)
+        this.SET_THEME_RESULT(this.queryDict)
         console.log(this.queryDict)
         router.push({
           name:'themeResult',
@@ -74,7 +75,9 @@ export default {
           this.queryDict[key] = [inputData[key]]
          }
       }
-    }
+    },
+
+    ...mapMutations(['SET_THEME_RESULT']),
   }
 }
 </script>

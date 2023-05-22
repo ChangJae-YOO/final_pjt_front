@@ -34,17 +34,17 @@ export default {
   methods: {
     getMovies() {
      axios({
-        method: 'POST',
         url: `${API_URL}/themes/detail/get_movies/`,
+        method: 'post',
         headers: {
           Authorization: `Token ${this.$store.state.user.token}`,
         },
-        data: {
-          content: this.inputData,
-        }
+        data: this.inputData,
       })
       .then((res) => {
         console.log(res.data)
+        console.log(this.inputData)
+        console.log(this.$store.state.themeResult)
         this.movies = res.data
       })
       .catch((err) => {
