@@ -1,51 +1,33 @@
 <template>
-  <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse ms-4" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item me-4 text-center">
-          <a class="nav-link" aria-current="page" href="/theme">테마 만들기</a>
-        </li>
-        <li class="nav-item me-4 text-center">
-          <a class="nav-link" href="/search">영화 검색</a>
-        </li>
-        <li class="nav-item me-4 text-center">
-          <a class="nav-link" href="#">내가 좋아한 영화</a>
-        </li>
-      </ul>
-      <div v-if="isLogin">
-        <a href="#" @click="logout" class="text-light" style="text-decoration:none; margin-right:24px">로그아웃</a>
-      </div>
-      <div class="text-light" style="margin-right:24px" v-else>
-      <a href="http://localhost:8080/accounts/login" class="text-light" style="text-decoration:none">로그인</a> /
-      <a href="http://localhost:8080/accounts/signup" class="text-light" style="text-decoration:none">회원가입</a>
-      </div>
+  <div class="container">
+    <div class="header">
+      <img :src="getPosterUrl(movie?.poster_path)" alt="Movie Poster" class="poster">
+      <h3 class="title">{{ movie?.title }}</h3>
     </div>
-  </div>
-</nav>
-    <h1>Detail</h1>
 
-    <p>글 번호 : {{ movie?.id }}</p>
-    <p>제목 : {{ movie?.title }}</p>
-    <p>{{ movie?.overview }}</p>
-    <img :src="getPosterUrl(movie?.poster_path)" alt="Movie Poster" width="300px" height="300px">
+    <div class="content">
+      <div class="overview">
+        <h2>개요</h2>
+        <p>{{ movie?.overview }}</p>
+      </div>
 
-    <form @submit.prevent="createComment">
-      <label for="comment" class="form-label">댓글 입력</label>
-      <input class="form-control" id="comment" v-model="comment">
-    </form>
+      <div class="comment-form">
+        <h2>댓글 입력</h2>
+        <form @submit.prevent="createComment">
+          <div class="form-group">
+            <label for="comment" class="form-label">댓글</label>
+            <input class="form-control" id="comment" v-model="comment">
+          </div>
+          <button type="submit" class="btn btn-primary">작성</button>
+        </form>
+      </div>
 
-    <div v-for="commentDict in commentSet" :key="commentDict.id">
-    <DetailComment
-    :Comment="commentDict"
-    @commentDeleted="getMovieDetail"
-    @commentEdited="getMovieDetail"
-    />
+      <div class="comments">
+        <h2>댓글</h2>
+        <div v-for="commentDict in commentSet" :key="commentDict.id">
+          <DetailComment :Comment="commentDict" @commentDeleted="getMovieDetail" @commentEdited="getMovieDetail" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -130,18 +112,4 @@ export default {
 </script>
 
 <style>
-.container {
-  padding: 0;
-
-  @media (min-width: 768px) {
-  padding: 0 50px;
-  }
-}
-.container-fluid{
-    padding: 0;
-
-  @media (min-width: 768px) {
-  padding: 0 100px;
-  }
-}
 </style>

@@ -1,14 +1,19 @@
 <template>
+<div>
+  <div style="color:white;">
+    <h1>로고가 들어갑니다zz</h1>
+  </div>
 <div class="login-wrap">
   <div class="login-html">
-     <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
-      <label for="tab-1" class="tab">
-        <a href="/accounts/login" id="tab-1-link" class="tab" @click="setActiveTab('sign-in')">Sign In</a>
-      </label>
+
+ <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
+      <a href="/accounts/login" id="tab-1-link" class="tab" @click="setActiveTab('sign-in')">Sign In</a>
+
       <input id="tab-2" type="radio" name="tab" class="sign-up">
-      <label for="tab-2" class="tab">
-        <a href="/accounts/signup" id="tab-2-link" class="tab" @click="setActiveTab('sign-up')">Sign Up</a>
-      </label>
+      <a href="/accounts/signup" id="tab-2-link" class="tab" @click="setActiveTab('sign-up')">Sign Up</a>
+
+
+
     <div class="login-form">
       <div class="sign-in-htm">
         <form @submit.prevent="login">
@@ -27,32 +32,8 @@
       </div>
     </div>
   </div>
+  </div>
 </div>
-
-  <!-- <div>
-      <div class="formContainer">
-      <form @submit.prevent="login" class="px-4 py-3">
-        <div>
-          <a href="/accounts/login">로그인</a>
-        </div>
-        <div>
-          <a href="/accounts/signup">회원가입</a>
-        </div>
-
-      <div class="mb-3">
-        <label for="username" class="form-label">아이디</label>
-        <input type="username" class="form-control" id="username" placeholder="아이디를 입력해 주세요" v-model="username">
-      </div>
-
-      <div class="mb-3">
-        <label for="Password" class="form-label">비밀번호</label>
-        <input type="password" class="form-control" id="Password" placeholder="비밀번호를 입력해 주세요" v-model="password">
-      </div>
-
-      <button type="submit" class="btn btn-primary">Sign in</button>
-    </form>
-    </div>
-  </div> -->
 </template>
 
 <script>
@@ -90,10 +71,8 @@ export default {
 
 <style>
 body{
-  margin:0;
-  color:#6a6f8c;
-  background:#c8c8c8;
   font:600 16px/18px 'Open Sans',sans-serif;
+  background-color: black;
 }
 *,:after,:before{box-sizing:border-box}
 .clearfix:after,.clearfix:before{content:'';display:table}
@@ -106,15 +85,17 @@ a{color:inherit;text-decoration:none}
   max-width:525px;
   min-height:670px;
   position:relative;
-  background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;
-  box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+
 }
 .login-html{
   width:100%;
   height:100%;
   position:absolute;
   padding:90px 70px 50px 70px;
-  background:rgba(40,57,101,.9);
+  background:black;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .login-html .sign-in-htm,
 .login-html .sign-up-htm{
@@ -238,5 +219,24 @@ a{color:inherit;text-decoration:none}
 }
 .foot-lnk{
   text-align:center;
+}
+a.tab {
+  display: inline-block;
+  padding: 10px 15px;
+  margin: -10px -15px;
+}
+.login-html .tab:not(:checked) {
+  color: rgba(255, 255, 255, 0.3);
+}
+.container {
+  display: flex;
+}
+
+.left-section {
+  flex: 1;
+}
+
+.right-section {
+  flex: 1;
 }
 </style>
