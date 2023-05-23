@@ -12,7 +12,10 @@
         <input type="themeDescription" id="themeDescription" v-model="themeDescription">
       </div>
 
-      <CreateQuestion @question-to-theme="getQuestion"/>
+      <button @click="add">질문 추가</button>
+      <br>
+
+      <CreateQuestion @question-to-theme="getQuestion" v-for="item in questions" :key="item"/>
       <button type="submit" @click="makeTheme">제출</button>
     </form>
   </div>
@@ -38,6 +41,7 @@ export default {
       themeDescription: '',
 
       questionLst: [],
+      questions: [],
     }
   },
 
@@ -50,6 +54,10 @@ export default {
       this.questionLst.push(questionData)
       console.log(this.questionLst)
     },
+
+    add () {
+			this.questions.push('hi')
+		},
 
     makeTheme: function(){
       axios({

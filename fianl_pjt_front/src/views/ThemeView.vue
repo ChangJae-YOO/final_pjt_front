@@ -42,8 +42,7 @@ export default {
     getQueries() {
      axios({
         method: 'get',
-        // url: `${API_URL}/themes/detail/${ this.$route.params.id }/`,
-        url: `${API_URL}/themes/detail/74/`,
+        url: `${API_URL}/themes/detail/${ this.$route.params.id }/`,
       })
       .then((res) => {
         this.themeDetail = res.data
