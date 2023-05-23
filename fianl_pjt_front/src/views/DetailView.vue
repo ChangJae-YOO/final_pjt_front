@@ -1,18 +1,37 @@
 <template>
   <div class="container">
+    <!-- <div class="header" :style="{ backgroundImage: `url(${getBackDropUrl(movie?.backdrop_path)})` }"> -->
     <div class="header">
-      <img :src="getPosterUrl(movie?.poster_path)" alt="Movie Poster" class="poster">
+      <div class="title-likes">
       <h3 class="title">{{ movie?.title }}</h3>
+      <div class="likes-count"><div class="heart-icon"><i class="fas fa-heart"></i>
+      <span>몇개인지</span>
+      </div>
+      </div>
+      </div>
+      <img :src="getPosterUrl(movie?.poster_path)" alt="Movie Poster" class="poster">
     </div>
 
+      <div class="buttons">
+        <button>좋아요</button>
+        <button>싫어요</button>
+        <button>봤어요</button>
+      </div>
     <div class="content">
       <div class="overview">
         <h2>개요</h2>
-        <p>{{ movie?.overview }}</p>
+        <p class="movie-overview">{{ movie?.overview }}</p>
       </div>
-
+    
+      <div class="comment-wrapper">
+      <div class="comments">
+        <h2>댓글</h2>
+        <div v-for="commentDict in (showAllComments ? commentSet : commentSet.slice(0, 4))" :key="commentDict.id">
+          <DetailComment :Comment="commentDict" @commentDeleted="getMovieDetail" @commentEdited="getMovieDetail" />
+        </div>
+        <button v-if="commentSet.length > 4" @click="showAllComments = !showAllComments">{{ showAllComments ? '접기' : '더보기' }}</button>
+      </div>
       <div class="comment-form">
-        <h2>댓글 입력</h2>
         <form @submit.prevent="createComment">
           <div class="form-group">
             <label for="comment" class="form-label">댓글</label>
@@ -22,12 +41,7 @@
         </form>
       </div>
 
-      <div class="comments">
-        <h2>댓글</h2>
-        <div v-for="commentDict in commentSet" :key="commentDict.id">
-          <DetailComment :Comment="commentDict" @commentDeleted="getMovieDetail" @commentEdited="getMovieDetail" />
-        </div>
-      </div>
+    </div>
     </div>
   </div>
 </template>
@@ -49,8 +63,9 @@ export default {
   data() {
     return {
       movie: null,
-      commentSet: null,
+      commentSet: [],
       comment: null, // v-model로 연결된 input변수
+      showAllComments: false
     }
   },
   
@@ -72,7 +87,7 @@ export default {
       })
       .then((res) => {
         this.movie = res.data
-        this.commentSet = res.data.comment_set
+        this.commentSet = res.data.comment_set.reverse()
       })
       .catch((err) => {
         console.log(err)
@@ -105,7 +120,7 @@ export default {
       .catch(() => {
         alert('로그인 하세용 ㅋㅋ')
       })
-    }
+    },
   }
 
 }
@@ -119,12 +134,15 @@ export default {
 }
 
 .header {
+  margin-top: 50px;
   position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-end;
   margin-bottom: 20px;
   z-index: 1;
+  width: 100%;
+  height: 500px;
 }
 
 .header::after {
@@ -137,13 +155,44 @@ export default {
   background-image: url('https://image.tmdb.org/t/p/original//gs70htixF6j1oqrrwsM4lVfcgNN.jpg');
   background-size: cover;
   background-position: center;
-  opacity: 0.7; /* 배경의 투명도 조정 (0에 가까울수록 투명) */
-  z-index: -1; /* 배경을 뒤로 이동 */
+  opacity: 0.3;
+  z-index: -1;
 }
 
-
 .poster {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 300px;
+}
+
+.title-likes {
+  display: flex;
+  padding: 40px
+}
+.title {
+  margin-right:20px
+}
+.likes-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.heart-icon i {
+  margin-right: 10px;
+}
+.movie-overview {
+  font-size: 16px;
+}
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+.overview {
+  flex: 1;
+  margin-right: 500px;
+  width: 400px;
+}
+.comment-wrapper {
+  flex: 1;
 }
 </style>

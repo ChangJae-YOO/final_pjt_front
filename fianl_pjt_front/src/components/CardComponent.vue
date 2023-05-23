@@ -36,21 +36,29 @@ export default {
 .card {
   position: relative;
   width: 100%;
+  height: 80%;
 }
 
 .poster-container {
   position: relative;
   width: 100%;
   height: 0;
-  padding-bottom: 150%; /* Adjust this value to control the aspect ratio of the poster */
+  padding-bottom: 150%;
   overflow: hidden;
 }
 
 .image-wrapper {
   position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
 }
 
+.card-img-top {
+  object-fit: cover;
+}
 .card-text-overlay {
   position: absolute;
   top: 0;

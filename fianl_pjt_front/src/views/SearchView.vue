@@ -1,5 +1,8 @@
 <template>
+
+
   <div>
+    <img src="@/assets/zz.jpeg" alt="">
     <div class="search-container">
       <form @submit.prevent="search" class="search-form">
         <div class="search-input">
@@ -17,8 +20,8 @@
       </div>
     </div>
   </div>
-</template>
 
+</template>
 <script>
 import CardComponent from '@/components/CardComponent'
 import axios from 'axios'
@@ -84,9 +87,13 @@ export default {
 }
 
 .search-form {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
 }
 
+.search-input {
+  width: 400px;
+}
 .card-container {
   margin: 0 auto;
   max-width: 1200px;
@@ -95,8 +102,7 @@ export default {
 .card-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
-  justify-content: space-between;
+  gap: 20px;
 }
 
 .card-col {
@@ -124,4 +130,5 @@ export default {
     max-width: 100%;
   }
 }
+
 </style>

@@ -22,8 +22,8 @@
         <a href="#" @click="logout" class="text-light" style="text-decoration:none; margin-right:24px">로그아웃</a>
       </div>
       <div class="text-light" style="margin-right:24px" v-else>
-      <a href="http://localhost:8080/accounts/login" class="text-light" style="text-decoration:none">로그인</a> /
-      <a href="http://localhost:8080/accounts/signup" class="text-light" style="text-decoration:none">회원가입</a>
+      <router-link :to="{name: 'login'}">로그인</router-link> /
+      <router-link :to="{name: 'signup'}">회원가입</router-link>
       </div>
     </div>
   </div>
@@ -49,6 +49,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  color: white;
   }
 
 </style>
