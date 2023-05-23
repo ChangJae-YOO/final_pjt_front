@@ -1,61 +1,43 @@
 <template>
   <div>
-      <div>
-        <label for="question">질문: </label>
-        <input type="question" id="question" v-model="question">
-      </div>
+    <div>
+      <label for="question">질문: </label>
+      <input type="text" id="question" v-model="question">
+    </div>
+    <br>
 
-      <div>
-        <label for="queryDescription1">대답1:</label>
-        <input type="queryDescription1" id="queryDescription1" v-model="queryDescription1">
-        
-        <label>조건:</label>
-        <select name="temp_key1" id="temp_key1" v-model="temp_key1">
-          <option value="include_adult">include_adult</option>
-          <option value="with_genres">with_genres</option>
-          <option value="without_genres">without_genres</option>
-          <option value="language">language</option>
-          <option value="with_keywords">with_keywords</option>
-          <option value="without_keywords">without_keywords</option>
-          <option value="vote_average_gte">vote_average_gte</option>
-          <option value="vote_average_lte">vote_average_lte</option>
-          <option value="release_date_gte">release_date_gte</option>
-          <option value="release_date_lte">release_date_lte</option>
-          <option value="with_runtime_gte">with_runtime_gte</option>
-          <option value="with_runtime_lte">with_runtime_lte</option>
-        </select>
-        <input type="temp_value1" id="temp_value1" v-model="temp_value1">
-      </div>
+    <div>
+      <label for="queryDescription1">대답1:</label>
+      <input type="text" id="queryDescription1" v-model="queryDescription1">
+      <br>
 
-      <div>
-        <label for="queryDescription2">대답2:</label>
-        <input type="queryDescription2" id="queryDescription2" v-model="queryDescription2">
-        
-        <label>조건:</label>
-        <select name="temp_key2" id="temp_key2" v-model="temp_key2">
-          <option value="include_adult">include_adult</option>
-          <option value="with_genres">with_genres</option>
-          <option value="without_genres">without_genres</option>
-          <option value="language">language</option>
-          <option value="with_keywords">with_keywords</option>
-          <option value="without_keywords">without_keywords</option>
-          <option value="vote_average_gte">vote_average_gte</option>
-          <option value="vote_average_lte">vote_average_lte</option>
-          <option value="release_date_gte">release_date_gte</option>
-          <option value="release_date_lte">release_date_lte</option>
-          <option value="with_runtime_gte">with_runtime_gte</option>
-          <option value="with_runtime_lte">with_runtime_lte</option>
-        </select>
-        <input type="temp_value2" id="temp_value2" v-model="temp_value2">
-      </div>
+      <button type="button" @click="addQuery1">조건 추가</button>
+      <CreateQuery @query-to-question="getQuery1" v-for="item in answer1_items" :key="item"/>
+    </div>
 
-      <p @click="questionToTheme">만들기</p>
+
+    <div>
+      <label for="queryDescription2">대답2:</label>
+      <input type="text" id="queryDescription2" v-model="queryDescription2">
+      <br>
+
+      <button type="button" @click="addQuery2">조건 추가</button>
+      <CreateQuery @query-to-question="getQuery2" v-for="item in answer2_items" :key="item"/>
+    </div>
+
+    <button type="button" @click="questionToTheme">질문 만들기</button>
   </div>
 </template>
 
 <script>
+import CreateQuery from '@/components/CreateQuery.vue'
+
 export default {
   name: 'CreateQuestion',
+
+  components: {
+    CreateQuery
+  },
 
   data () {
     return {
@@ -67,22 +49,45 @@ export default {
       queryDescription2: '',
       queryData2: {},
 
-      temp_key1: '',
-      temp_value1: '',
-
-      temp_key2: '',
-      temp_value2: '',
+      answer1_items: [],
+      answer2_items: [],
     }
   },
 
   methods: {
-    questionToTheme() {
-      this.queryData1[this.temp_key1] = this.temp_value1
+
+    addQuery1() {
+      this.answer1_items.push(true)
+    },
+
+    addQuery2() {
+      this.answer2_items.push(true)
+    },
+
+    getQuery1(queryData) {
+      if (queryData.key in this.queryData1){
+        this.queryData1[queryData.key] += ',' + queryData.value
+      }
+      else{
+        this.queryData1[queryData.key] = queryData.value
+      }
+    },
+
+    getQuery2(queryData) {
+      if (queryData.key in this.queryData2){
+        this.queryData2[queryData.key] += ',' + queryData.value
+      }
+      else{
+        this.queryData2[queryData.key] = queryData.value
+      }
+    },
+  
+    questionToTheme() {  
       this.queryData1['description'] = this.queryDescription1
-      this.queryData2[this.temp_key2] = this.temp_value2
       this.queryData2['description'] = this.queryDescription2
-      
+
       let questionData = {
+      
         question: this.question,
 
         queryDescription1: this.queryDescription1,

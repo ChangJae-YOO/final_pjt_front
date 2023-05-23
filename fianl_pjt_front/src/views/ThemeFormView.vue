@@ -11,12 +11,13 @@
         <label for="themeDescription">테마 설명</label>
         <input type="themeDescription" id="themeDescription" v-model="themeDescription">
       </div>
+      <br>
 
-      <button @click="add">질문 추가</button>
+      <button type="button" @click="add">질문 추가</button>
       <br>
 
       <CreateQuestion @question-to-theme="getQuestion" v-for="item in questions" :key="item"/>
-      <button type="submit" @click="makeTheme">제출</button>
+      <button type="submit">제출</button>
     </form>
   </div>
 </template>
@@ -52,7 +53,6 @@ export default {
 
     getQuestion: function(questionData){
       this.questionLst.push(questionData)
-      console.log(this.questionLst)
     },
 
     add () {
@@ -85,10 +85,6 @@ export default {
           })
           .then((res) => {
             let questionId = res.data.id
-
-            console.log(question.queryDescription1)
-            console.log(question.queryDescription2)
-            console.log(questionId)
 
             axios({
             url: `${API_URL}/themes/detail/${questionId}/create_query/`,
