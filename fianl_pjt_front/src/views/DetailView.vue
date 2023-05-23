@@ -112,4 +112,38 @@ export default {
 </script>
 
 <style>
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  z-index: 1;
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://image.tmdb.org/t/p/original//gs70htixF6j1oqrrwsM4lVfcgNN.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.7; /* 배경의 투명도 조정 (0에 가까울수록 투명) */
+  z-index: -1; /* 배경을 뒤로 이동 */
+}
+
+
+.poster {
+  width: 200px;
+  height: 200px;
+}
 </style>
