@@ -43,7 +43,7 @@ export default {
      axios({
         method: 'get',
         // url: `${API_URL}/themes/detail/${ this.$route.params.id }/`,
-        url: `${API_URL}/themes/detail/1/`,
+        url: `${API_URL}/themes/detail/74/`,
       })
       .then((res) => {
         this.themeDetail = res.data

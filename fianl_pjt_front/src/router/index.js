@@ -7,6 +7,7 @@ import DetailView from '../views/DetailView.vue'
 import SearchView from '../views/SearchView.vue'
 import ThemeView from '../views/ThemeView.vue'
 import ThemeResult from '../views/ThemeResult.vue'
+import ThemeFormView from '../views/ThemeFormView.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -50,6 +51,12 @@ const routes = [
     path: '/theme-result/',
     name: 'themeResult',
     component: ThemeResult
+  },
+
+  {
+    path: '/theme-form/',
+    name: 'themeFormView',
+    component: ThemeFormView,
   },
   
   // {

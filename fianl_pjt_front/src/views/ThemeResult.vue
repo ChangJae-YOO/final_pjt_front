@@ -34,11 +34,8 @@ export default {
   methods: {
     getMovies() {
      axios({
-        url: `${API_URL}/themes/detail/get_movies/`,
+        url: `${API_URL}/movies/get_movies/`,
         method: 'post',
-        headers: {
-          Authorization: `Token ${this.$store.state.user.token}`,
-        },
         data: this.inputData,
       })
       .then((res) => {
