@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div @click="goToDetail" class="card">
     <div class="poster-container">
       <div class="image-wrapper">
         <img :src="getPosterUrl(movie?.poster_path)" class="card-img-top" alt="포스터 이미지">
