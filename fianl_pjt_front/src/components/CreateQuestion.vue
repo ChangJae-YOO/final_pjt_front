@@ -1,31 +1,36 @@
 <template>
   <div>
-    <div>
-      <label for="question">질문: </label>
-      <input type="text" id="question" v-model="question">
-    </div>
-    <br>
-
-    <div>
-      <label for="queryDescription1">대답1:</label>
-      <input type="text" id="queryDescription1" v-model="queryDescription1">
+    <div v-if="isChecked">
+      <div>
+        <label for="question">질문: </label>
+        <input type="text" id="question" v-model="question">
+      </div>
       <br>
 
-      <button type="button" @click="addQuery1">조건 추가</button>
-      <CreateQuery @query-to-question="getQuery1" v-for="item in answer1_items" :key="item"/>
+      <div>
+        <label for="queryDescription1">대답1:</label>
+        <input type="text" id="queryDescription1" v-model="queryDescription1">
+
+        <button type="button" @click="addQuery1">조건 추가</button>
+        <CreateQuery @query-to-question="getQuery1" v-for="item in answer1_items" :key="item"/>
+      </div>
+
+
+      <div>
+        <label for="queryDescription2">대답2:</label>
+        <input type="text" id="queryDescription2" v-model="queryDescription2">
+
+        <button type="button" @click="addQuery2">조건 추가</button>
+        <CreateQuery @query-to-question="getQuery2" v-for="item in answer2_items" :key="item"/>
+      </div>
+
+      <button type="button" @click="questionToTheme">질문 만들기</button>
     </div>
 
-
-    <div>
-      <label for="queryDescription2">대답2:</label>
-      <input type="text" id="queryDescription2" v-model="queryDescription2">
-      <br>
-
-      <button type="button" @click="addQuery2">조건 추가</button>
-      <CreateQuery @query-to-question="getQuery2" v-for="item in answer2_items" :key="item"/>
+    <div v-if="!isChecked">
+      {{ this.question }}
+      <button type="button" @click="eraseQustion">질문 다시 만들기</button>
     </div>
-
-    <button type="button" @click="questionToTheme">질문 만들기</button>
   </div>
 </template>
 
@@ -51,10 +56,16 @@ export default {
 
       answer1_items: [],
       answer2_items: [],
+
+      isChecked: true,
     }
   },
 
   methods: {
+
+    eraseQustion(){
+      this.isChecked = true
+    },
 
     addQuery1() {
       this.answer1_items.push(true)
@@ -85,6 +96,7 @@ export default {
     questionToTheme() {  
       this.queryData1['description'] = this.queryDescription1
       this.queryData2['description'] = this.queryDescription2
+      this.isChecked = false
 
       let questionData = {
       

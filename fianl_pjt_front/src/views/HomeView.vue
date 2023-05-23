@@ -1,10 +1,7 @@
 <template>
   <div>
-
-    <h1>홈입니다 ㅋㅋ</h1>
     <p>Welcome, {{ username }}</p>
     <router-link :to="{name: 'detail'}">디테일화면</router-link> |
-    <router-link :to="{name: 'theme'}">테마 화면</router-link> |
     <router-link :to="{name: 'themeFormView'}">테마 만들깈ㅋ</router-link>
     
     <div v-for="theme in themes" :key="theme.id">

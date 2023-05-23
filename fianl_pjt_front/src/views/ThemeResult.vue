@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <h1>결괔ㅋㅋㅋ</h1>
-    <ResultMovie/>
-    {{ movies }}
+  <div class="mt-5">
+    <ResultMovie :Movie="movies"/>
   </div>
 </template>
 

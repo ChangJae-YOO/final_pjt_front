@@ -1,22 +1,27 @@
 <template>
   <div>
-    <h1>테마만들깈ㅋㅋㅋㅋ</h1>
+    <h1 class="mt-5"> 테마 만들기 </h1>
     <form @submit.prevent="makeTheme">
       <div>
-        <label for="themeTitle">테마 제목</label>
+        <label for="themeTitle" class="m-3">테마 제목</label>
         <input type="themeTitle" id="themeTitle" v-model="themeTitle">
       </div>
 
       <div>
-        <label for="themeDescription">테마 설명</label>
+        <label for="themeDescription" class="m-3">테마 설명</label>
         <input type="themeDescription" id="themeDescription" v-model="themeDescription">
       </div>
       <br>
 
+      <div v-for="item in questions" :key="item">
+        <CreateQuestion @question-to-theme="getQuestion" v-if="item"/>
+      </div>
+
+      
       <button type="button" @click="add">질문 추가</button>
       <br>
 
-      <CreateQuestion @question-to-theme="getQuestion" v-for="item in questions" :key="item"/>
+
       <button type="submit">제출</button>
     </form>
   </div>
@@ -55,8 +60,14 @@ export default {
       this.questionLst.push(questionData)
     },
 
+    closeQuestionForm(){
+      for (let idx in this.questions){
+        this.questions[idx] = false
+      }
+    },
+
     add () {
-			this.questions.push('hi')
+			this.questions.push(true)
 		},
 
     makeTheme: function(){

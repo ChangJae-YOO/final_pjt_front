@@ -99,66 +99,6 @@
           'without_keywords': '라는 단어가 안 들어간 영화 추천',
         },
   
-        key_html : {
-          'include_adult': 
-          '<select v-model="temp_value">'
-          + '<option value="1">O</option>'
-          + '<option value="0">X</option>'
-          + '</select>',
-          'with_genres': 
-          '<select v-model="temp_value">'
-          + '<option value="12">모험</option>'
-          + '<option value="14">판타지</option>'
-          + '<option value="16">애니메이션</option>'
-          + '<option value="18">드라마</option>'
-          + '<option value="27">공포</option>'
-          + '<option value="28">액션</option>'
-          + '<option value="35">코미디</option>'
-          + '<option value="36">역사</option>'
-          + '<option value="37">서부</option>'
-          + '<option value="53">스릴러</option>'
-          + '<option value="80">범죄</option>'
-          + '<option value="99">다큐멘터리</option>'
-          + '<option value="878">SF</option>'
-          + '<option value="9648">미스터리</option>'
-          + '<option value="10402">음악</option>'
-          + '<option value="10749">로맨스</option>'
-          + '<option value="10751">가족</option>'
-          + '<option value="10752">전쟁</option>'
-          + '<option value="10770">TV 영화</option>'
-          + '</select>',
-          'without_genres': 
-          '<select v-model="temp_value">'
-          + '<option value="12">모험</option>'
-          + '<option value="14">판타지</option>'
-          + '<option value="16">애니메이션</option>'
-          + '<option value="18">드라마</option>'
-          + '<option value="27">공포</option>'
-          + '<option value="28">액션</option>'
-          + '<option value="35">코미디</option>'
-          + '<option value="36">역사</option>'
-          + '<option value="37">서부</option>'
-          + '<option value="53">스릴러</option>'
-          + '<option value="80">범죄</option>'
-          + '<option value="99">다큐멘터리</option>'
-          + '<option value="878">SF</option>'
-          + '<option value="9648">미스터리</option>'
-          + '<option value="10402">음악</option>'
-          + '<option value="10749">로맨스</option>'
-          + '<option value="10751">가족</option>'
-          + '<option value="10752">전쟁</option>'
-          + '<option value="10770">TV 영화</option>'
-          + '</select>',
-          'vote_average_gte': '<input type="number" min="0" max="10" v-model="temp_value">',
-          'vote_average_lte': '<input type="number" min="0" max="10" v-model="temp_value">',
-          'release_date_gte': '<input type="date" v-model="temp_value">',
-          'release_date_lte': '<input type="date" v-model="temp_value">',
-          'with_runtime_gte': '<input type="number" min="0" max="600" v-model="temp_value">',
-          'with_runtime_lte': '<input type="number" min="0" max="600" v-model="temp_value">',
-          'with_keywords': '<input type="text" v-model="temp_value">',
-          'without_keywords': '<input type="text" v-model="temp_value">',
-        },
-
         temp_key: '',
         temp_value: '',
       }

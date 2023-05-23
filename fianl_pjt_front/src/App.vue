@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse ms-4" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item me-4 text-center">
-          <a class="nav-link" aria-current="page" href="/theme">테마 만들기</a>
+          <a class="nav-link" aria-current="page" href="/theme-form">테마 만들기</a>
         </li>
         <li class="nav-item me-4 text-center">
           <a class="nav-link" href="/search">영화 검색</a>
