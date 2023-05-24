@@ -3,9 +3,13 @@
     <p>Welcome, {{ username }}</p>
     <router-link :to="{name: 'detail'}">디테일화면</router-link> |
     <router-link :to="{name: 'themeFormView'}">테마 만들깈ㅋ</router-link>
-    
-    <div v-for="theme in themes" :key="theme.id">
-      <CardTheme :theme="theme"/>
+  
+    <div class="card-container">
+      <div class="card-row">
+        <div class="card-col" v-for="theme in themes" :key="theme.id">
+          <CardTheme :theme="theme"/>
+        </div>
+      </div>
     </div>
   </div>
 </template>

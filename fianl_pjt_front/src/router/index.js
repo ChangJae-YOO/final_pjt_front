@@ -8,6 +8,9 @@ import SearchView from '../views/SearchView.vue'
 import ThemeView from '../views/ThemeView.vue'
 import ThemeResult from '../views/ThemeResult.vue'
 import ThemeFormView from '../views/ThemeFormView.vue'
+import LikedMovieView from '../views/LikedMovieView.vue'
+import LikedThemeView from '../views/LikedThemeView.vue'
+import MadeThemeView from '../views/MadeThemeView.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -57,6 +60,24 @@ const routes = [
     path: '/theme-form/',
     name: 'themeFormView',
     component: ThemeFormView,
+  },
+
+  {
+    path: '/liked-movie/',
+    name: 'likedMovieView',
+    component: LikedMovieView,
+  },
+
+  {
+    path: '/liked-theme/',
+    name: 'likedThemeView',
+    component: LikedThemeView,
+  },
+
+  {
+    path: '/made-theme/',
+    name: 'madeThemeView',
+    component: MadeThemeView,
   },
   
   // {

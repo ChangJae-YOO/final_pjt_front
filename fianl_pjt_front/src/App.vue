@@ -15,7 +15,13 @@
           <a class="nav-link" href="/search">영화 검색</a>
         </li>
         <li class="nav-item me-4 text-center">
-          <a class="nav-link" href="#">내가 좋아한 영화</a>
+          <a class="nav-link" href="/liked-movie">내가 좋아한 영화</a>
+        </li>
+        <li class="nav-item me-4 text-center">
+          <a class="nav-link" href="/liked-theme">내가 좋아한 테마</a>
+        </li>
+        <li class="nav-item me-4 text-center">
+          <a class="nav-link" href="/made-theme">내가 만든 테마</a>
         </li>
       </ul>
       <div v-if="isLogin">
