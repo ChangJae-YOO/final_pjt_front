@@ -8,6 +8,12 @@
       <br>
 
       <div>
+        <label for="questionImage" class="m-3">질문 이미지</label>
+        <input type="file" accept="image/*" id="questionImgae" @change="fileUpload"/>
+      </div>
+      <br>
+
+      <div>
         <label for="queryDescription1">대답1:</label>
         <input type="text" id="queryDescription1" v-model="queryDescription1">
 
@@ -58,10 +64,14 @@ export default {
       answer2_items: [],
 
       isChecked: true,
+      imageFile: '',
     }
   },
 
   methods: {
+    fileUpload: function(file){
+      this.imageFile = file.target.files[0]
+    },
 
     eraseQustion(){
       this.isChecked = true
@@ -99,8 +109,8 @@ export default {
       this.isChecked = false
 
       let questionData = {
-      
         question: this.question,
+        image: this.imageFile,
 
         queryDescription1: this.queryDescription1,
         queryData1: this.queryData1,

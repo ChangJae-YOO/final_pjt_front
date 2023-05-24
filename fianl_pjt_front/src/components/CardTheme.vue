@@ -8,7 +8,7 @@
     </h5>
     <div class="poster-container" @click="goToDetail" >
       <div class="image-wrapper">
-        <img src="" class="card-img-top" alt="포스터 이미지">
+        <img :src="url + theme.image" class="card-img-top" alt="포스터 이미지">
       </div>
       <div class="card-text-overlay">   
         <p class="card-text">{{ theme.description }}</p>
@@ -31,6 +31,7 @@ export default {
     return {
       likeCount: this.theme.like_user.length,
       isLiked: false,
+      url: API_URL,
     }
   },
 

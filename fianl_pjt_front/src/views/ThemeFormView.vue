@@ -13,6 +13,11 @@
       </div>
       <br>
 
+      <div>
+        <label for="themeImage" class="m-3">테마 이미지</label>
+        <input type="file" accept="image/*" id="themeImgae" @change="fileUpload"/>
+      </div>
+
       <div v-for="item in questions" :key="item">
         <CreateQuestion @question-to-theme="getQuestion" v-if="item"/>
       </div>
@@ -48,6 +53,8 @@ export default {
 
       questionLst: [],
       questions: [],
+
+      imageFile: '',
     }
   },
 
@@ -55,6 +62,10 @@ export default {
   },
   
   methods: {
+
+    fileUpload: function(file){
+      this.imageFile = file.target.files[0]
+    },
 
     getQuestion: function(questionData){
       this.questionLst.push(questionData)
@@ -71,13 +82,15 @@ export default {
 		},
 
     makeTheme: function(){
+      const frm = new FormData()
+      frm.append('title', this.themeTitle)
+      frm.append('description', this.themeDescription)
+      frm.append('image', this.imageFile)
+
       axios({
         url: `${API_URL}/themes/index/`,
         method: 'post',
-        data: {
-          title: this.themeTitle,
-          description: this.themeDescription,
-        },
+        data: frm,
         headers: {
           Authorization: `Token ${this.$store.state.user.token}`,
         }
@@ -86,13 +99,14 @@ export default {
         let themeId = res.data.id
 
         for (const question of this.questionLst){
+          const questionFrm = new FormData()
+          questionFrm.append('question', question.question)
+          questionFrm.append('image', question.image)
           
           axios({
           url: `${API_URL}/themes/detail/${themeId}/create_question/`,
           method: 'post',
-          data: {
-            question: question.question
-          },
+          data: questionFrm,
           })
           .then((res) => {
             let questionId = res.data.id
