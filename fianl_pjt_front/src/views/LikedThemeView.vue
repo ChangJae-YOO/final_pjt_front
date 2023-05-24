@@ -3,7 +3,7 @@
     <div class="card-container">
       <div class="card-row">
         <div class="card-col" v-for="theme in themes" :key="theme.id">
-          <CardTheme :theme="theme"/>
+          <CardTheme :theme="theme" :show-delete-button="false" @unlike-theme="removeTheme(theme.id)"/>
         </div>
       </div>
     </div>
@@ -51,7 +51,10 @@ export default {
           console.log(err)
         })
     },
-  },
+    removeTheme(themeId) {
+      this.themes = this.themes.filter(theme => theme.id !== themeId)
+    }
+  }
 }
 </script>
 
@@ -78,6 +81,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  margin-bottom: -10px;
 }
 
 .card-col {

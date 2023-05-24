@@ -7,10 +7,10 @@
   <div class="login-html">
 
  <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
-      <a href="/accounts/login" id="tab-1-link" class="tab" @click="setActiveTab('sign-in')">Sign In</a>
+      <a href="/accounts/login" id="tab-1-link" class="tab" @click="setActiveTab('sign-in')">로그인</a>
 
       <input id="tab-2" type="radio" name="tab" class="sign-up">
-      <a href="/accounts/signup" id="tab-2-link" class="tab" @click="setActiveTab('sign-up')">Sign Up</a>
+      <a href="/accounts/signup" id="tab-2-link" class="tab" @click="setActiveTab('sign-up')">회원가입</a>
 
 
 
@@ -18,15 +18,15 @@
       <div class="sign-in-htm">
         <form @submit.prevent="login">
           <div class="group">
-            <label for="user" class="label">Username</label>
+            <label for="user" class="label">아이디</label>
             <input id="user" type="text" class="input" v-model="username">
           </div>
           <div class="group">
-            <label for="pass" class="label">Password</label>
+            <label for="pass" class="label">비밀번호</label>
             <input id="pass" type="password" class="input" data-type="password" v-model="password">
           </div>
           <div class="group">
-            <button type="submit" class="button">Sign In</button>
+            <button type="submit" class="button">로그인</button>
           </div>
         </form>
       </div>
@@ -46,6 +46,7 @@ export default {
       activeTab: 'sign-in',
       username: null,
       password: null,
+      error: null,
     }
   },
 
@@ -60,7 +61,6 @@ export default {
       const payload = {
         username, password
       }
-      
       this.$store.dispatch('login', payload)
       this.username = null,
       this.password = null

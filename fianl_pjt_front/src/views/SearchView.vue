@@ -2,7 +2,6 @@
 
 
   <div>
-    <img src="@/assets/zz.jpeg" alt="">
     <div class="search-container">
       <form @submit.prevent="search" class="search-form">
         <div class="search-input">

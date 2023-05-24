@@ -3,8 +3,7 @@
     <div class="card-container">
       <div class="card-row">
         <div class="card-col" v-for="theme in themes" :key="theme.id">
-          <button class="delete-btn" type="button" @click="deleteTheme(theme.id)">X</button>
-          <CardTheme :theme="theme"/>
+          <CardTheme :theme="theme" @delete-theme="deleteTheme(theme.id)"/>
         </div>
       </div>
     </div>
@@ -88,6 +87,7 @@ export default {
 }
 
 .card-col {
+  height: 250px;
   flex: 0 0 calc(25% - 15px);
   max-width: calc(25% - 15px);
   position: relative;

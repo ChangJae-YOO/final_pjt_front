@@ -1,10 +1,12 @@
 <template>
   <div class="card">
     <div class="card-title">
-      <span>{{ theme.title }} </span>
-      <span v-if="isLiked" @click="likeTheme"><i class="fas fa-heart"></i></span>
-      <span v-else @click="likeTheme"><i class="far fa-heart"></i></span>
-      <span>{{ likeCount }}</span>
+      <span>{{ theme.title }}
+        <i v-if="isLiked" @click="likeTheme" class="fas fa-heart"></i>
+        <i v-else @click="likeTheme" class="far fa-heart"></i>
+      <span class="like-count">{{ likeCount }}</span>
+      </span>
+      <button v-if="showDeleteButton" class="delete-btn" type="button" @click="deleteTheme(theme.id)">X</button>
     </div>
     
     <div class="poster-container" @click="goToDetail" >
@@ -26,6 +28,11 @@ export default {
 
   props: {
     theme: Object,
+    showDeleteButton: {
+      type: Boolean,
+      default: true,
+    },
+
   },
 
   data() {
@@ -81,7 +88,9 @@ export default {
       }
     },
 
-
+    deleteTheme() {
+      this.$emit('delete-theme', this.theme.id)
+    },
     getPosterUrl(path) {
       return `https://image.tmdb.org/t/p/original${path}`;
     },
@@ -100,7 +109,9 @@ export default {
   height: 80%;
   color: white;
 }
-
+.card-col {
+  height: 250px;
+}
 .poster-container {
   position: relative;
   width: 100%;
@@ -139,11 +150,22 @@ export default {
 }
 
 .card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
 }
 
 .card-text {
   font-size: 1rem;
+}
+.delete-btn {
+  margin-left: 0.5rem;
+  background-color: black;
+  color: white;
+}
+.like-count {
+  margin-left: 0.5rem;
 }
 </style>
