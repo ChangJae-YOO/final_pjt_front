@@ -1,22 +1,18 @@
 <template>
   <div class="container">
-    <!-- <div class="header" :style="{ backgroundImage: `url(${getBackDropUrl(movie?.backdrop_path)})` }"> -->
     <div class="header">
+      <div class="backdrop-image" :style="{ backgroundImage: `url(${getBackDropUrl(movie?.backdrop_path)})` }">
+      </div>
       <div class="title-likes">
       <h3 class="title">{{ movie?.title }}</h3>
-      <div class="likes-count"><div class="heart-icon"><i class="fas fa-heart"></i>
-      <span>몇개인지</span>
+      <div class="likes-count"><div class="heart-icon" :class="{'liked':is_Liked}" @click="likeMovie"><i class="fas fa-heart"></i>
+      <span>{{likeCount}}</span>
       </div>
       </div>
       </div>
       <img :src="getPosterUrl(movie?.poster_path)" alt="Movie Poster" class="poster">
     </div>
 
-      <div class="buttons">
-        <button>좋아요</button>
-        <button>싫어요</button>
-        <button>봤어요</button>
-      </div>
     <div class="content">
       <div class="overview">
         <h2>개요</h2>
@@ -31,6 +27,7 @@
         </div>
         <button v-if="commentSet.length > 4" @click="showAllComments = !showAllComments">{{ showAllComments ? '접기' : '더보기' }}</button>
       </div>
+
       <div class="comment-form">
         <form @submit.prevent="createComment">
           <div class="form-group">
@@ -65,13 +62,16 @@ export default {
       movie: null,
       commentSet: [],
       comment: null, // v-model로 연결된 input변수
-      showAllComments: false
+      showAllComments: false,
+      is_Liked: false,
+      likeCount: null,
     }
   },
   
   created() {
     this.getMovieDetail()
   },
+
 
   computed: {
     ...mapGetters(['isLogin']),
@@ -86,8 +86,16 @@ export default {
         url: `${API_URL}/movies/detail/${ this.$route.params.id }/`,
       })
       .then((res) => {
+        console.log(res.data)
         this.movie = res.data
         this.commentSet = res.data.comment_set.reverse()
+        this.likeCount = res.data.movie_likes.length
+        if (this.movie.movie_like_users.includes(this.$store.state.user.username)) {
+      this.is_Liked = true
+        }
+        else {
+      this.is_Liked = false
+        }
       })
       .catch((err) => {
         console.log(err)
@@ -96,7 +104,20 @@ export default {
 
     // 포스터 가져오기
     getPosterUrl(path) {
+      if (path) {
       return `https://image.tmdb.org/t/p/original${path}`
+    }
+    else {
+      return ''
+    }
+    },
+    getBackDropUrl(path) {
+      if (path) {
+      return `https://image.tmdb.org/t/p/original${path}`
+      }
+      else {
+        return ''
+      }
     },
 
     // 댓글 생성함수
@@ -121,6 +142,26 @@ export default {
         alert('로그인 하세용 ㅋㅋ')
       })
     },
+
+    //영화 좋아요
+    likeMovie() {
+      axios({
+        method: 'post',
+        url: `${API_URL}/movies/detail/${this.$route.params.id}/like_movie/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.user.token}`,
+        },
+      })
+        .then((res) => {
+          console.log(res.data)
+          this.is_Liked = !this.is_Liked
+          this.getMovieDetail()
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+    },
+
   }
 
 }
@@ -145,16 +186,13 @@ export default {
   height: 500px;
 }
 
-.header::after {
-  content: "";
+.backdrop-image {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('https://image.tmdb.org/t/p/original//gs70htixF6j1oqrrwsM4lVfcgNN.jpg');
-  background-size: cover;
-  background-position: center;
+  object-fit: cover;
   opacity: 0.3;
   z-index: -1;
 }
@@ -180,12 +218,22 @@ export default {
 .heart-icon i {
   margin-right: 10px;
 }
+.heart-icon {
+  display: inline-block;
+  color: gray;
+  cursor: pointer;
+}
+
+.heart-icon.liked {
+  color: red;
+}
 .movie-overview {
   font-size: 16px;
 }
 .content {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .overview {
   flex: 1;
@@ -195,4 +243,5 @@ export default {
 .comment-wrapper {
   flex: 1;
 }
+
 </style>
