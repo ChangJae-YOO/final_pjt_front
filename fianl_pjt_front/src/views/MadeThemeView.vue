@@ -3,7 +3,7 @@
     <div class="card-container">
       <div class="card-row">
         <div class="card-col" v-for="theme in themes" :key="theme.id">
-          <button type="button" @click="deleteTheme(theme.id)">삭제하기</button>
+          <button class="delete-btn" type="button" @click="deleteTheme(theme.id)">X</button>
           <CardTheme :theme="theme"/>
         </div>
       </div>
@@ -75,20 +75,8 @@ export default {
 </script>
 
 <style>
-.search-container {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.search-form {
-  display: flex;
-  justify-content: center;
-}
-
-.search-input {
-  width: 400px;
-}
 .card-container {
+  padding-top: 30px;
   margin: 0 auto;
   max-width: 1200px;
 }
@@ -102,6 +90,7 @@ export default {
 .card-col {
   flex: 0 0 calc(25% - 15px);
   max-width: calc(25% - 15px);
+  position: relative;
 }
 
 @media (max-width: 991px) {
@@ -124,5 +113,4 @@ export default {
     max-width: 100%;
   }
 }
-
 </style>

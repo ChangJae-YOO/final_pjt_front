@@ -1,11 +1,12 @@
 <template>
   <div class="card">
-    <h5 class="card-title">
-      <b>{{ theme.title }} </b>
-      <b v-if="isLiked" @click="likeTheme">♡</b>
-      <b v-else @click="likeTheme">♥</b>
-      <b>{{ likeCount }}</b>
-    </h5>
+    <div class="card-title">
+      <span>{{ theme.title }} </span>
+      <span v-if="isLiked" @click="likeTheme"><i class="fas fa-heart"></i></span>
+      <span v-else @click="likeTheme"><i class="far fa-heart"></i></span>
+      <span>{{ likeCount }}</span>
+    </div>
+    
     <div class="poster-container" @click="goToDetail" >
       <div class="image-wrapper">
         <img :src="url + theme.image" class="card-img-top" alt="포스터 이미지">
@@ -97,6 +98,7 @@ export default {
   position: relative;
   width: 100%;
   height: 80%;
+  color: white;
 }
 
 .poster-container {

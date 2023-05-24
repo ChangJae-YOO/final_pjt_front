@@ -71,6 +71,7 @@ export default {
   width: 400px;
 }
 .card-container {
+  padding-top: 30px;
   margin: 0 auto;
   max-width: 1200px;
 }

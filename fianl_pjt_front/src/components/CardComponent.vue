@@ -84,5 +84,10 @@ export default {
 
 .card-text {
   font-size: 1rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 10; /* 표시할 줄 수 */
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
 }
 </style>
