@@ -3,20 +3,23 @@
   <div class="comment">
     <div class="comment-info">
       <p class="comment-user">작성자: {{ Comment.user_name }}</p>
-      <p class="comment-content">{{ Comment.content }}</p>
     </div>
+      <p class="comment-content">{{ Comment.content }}</p>
     <div class="comment-actions">
-      <div class="comment-likes">
-        <button @click="likeComment" :class="{ active: isLiked }">
-          <span class="thumb-icon" v-if="isLiked">👍</span>
-          <span class="thumb-icon" v-else>👍</span>
-          <span class="like-count">{{ likeCount }}</span>
-        </button>
-      </div>
+        <div class="comment-likes">
+          <button @click="likeComment" :class="{ active: isLiked }" class="like-button">
+            <i class="fas fa-thumbs-up thumb-icon" v-if="isLiked"></i>
+            <i class="far fa-thumbs-up thumb-icon" v-else></i>
+            <span class="like-count">{{ likeCount }}</span>
+          </button>
+        </div>
+       <div class="comment-actions" v-if="Comment.user_name === $store.state.user.username">
       <button @click="toggleEdit" class="edit-button">수정</button>
       <button @click="deleteComment" class="delete-button">삭제</button>
+      </div>
     </div>
   </div>
+  <div class="comment-separator"></div>
 
   <div v-if="isEditing" class="edit-comment">
     <input type="text" v-model="editedContent" class="edit-input">
@@ -163,7 +166,7 @@ export default {
   margin-bottom: 20px;
   padding: 10px;
   border-radius: 5px;
-  background-color: #f9f9f9;
+  color: white;
 }
 
 .comment-info {
@@ -172,15 +175,18 @@ export default {
 
 .comment-user {
   font-weight: bold;
+  margin-right:700px;
 }
 
 .comment-content {
   margin-top: 5px;
+  
 }
 
 .comment-actions {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .comment-likes {
@@ -240,5 +246,9 @@ export default {
 }
 .detail-comment {
   color:black;
+}
+.comment-separator {
+  margin: 20px 0;
+  border-bottom: 1px solid white;
 }
 </style>

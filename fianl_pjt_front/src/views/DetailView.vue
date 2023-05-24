@@ -20,23 +20,28 @@
       </div>
     
       <div class="comment-wrapper">
+        <div>
+          <div v-if="!isLogin" class="comment-form">
+            <p>댓글 작성을 위해 로그인하세요.</p>
+            <button @click="goToLogin" class="btn btn-secondary">로그인</button>
+          </div>
+          <div v-else class="comment-form">
+            <form @submit.prevent="createComment">
+              <div class="form-group">
+                <label for="comment" class="form-label">댓글</label>
+                <input class="form-control" id="comment" v-model="comment">
+              </div>
+              <button type="submit" class="btn mt-4 btn-secondary">작성하기</button>
+            </form>
+          </div>
+        </div>
       <div class="comments">
-        <h2>댓글</h2>
         <div v-for="commentDict in (showAllComments ? commentSet : commentSet.slice(0, 4))" :key="commentDict.id">
           <DetailComment :Comment="commentDict" @commentDeleted="getMovieDetail" @commentEdited="getMovieDetail" />
         </div>
-        <button v-if="commentSet.length > 4" @click="showAllComments = !showAllComments">{{ showAllComments ? '접기' : '더보기' }}</button>
+        <button class="btn m-4 btn-dark" v-if="commentSet.length > 4" @click="showAllComments = !showAllComments">{{ showAllComments ? '접기' : '더보기' }}</button>
       </div>
 
-      <div class="comment-form">
-        <form @submit.prevent="createComment">
-          <div class="form-group">
-            <label for="comment" class="form-label">댓글</label>
-            <input class="form-control" id="comment" v-model="comment">
-          </div>
-          <button type="submit" class="btn btn-primary">작성</button>
-        </form>
-      </div>
 
     </div>
     </div>
@@ -78,6 +83,11 @@ export default {
   },
 
   methods: {
+    //로그인 이동
+    goToLogin() {
+      this.$router.push({name:'login'})
+    },
+
     ...mapActions(['logout']),
     // movie 변수에 movie 인스턴스 저장, 동시에 commentSet 변수에 comment_set 저장
     getMovieDetail() {
@@ -183,7 +193,7 @@ export default {
   margin-bottom: 20px;
   z-index: 1;
   width: 100%;
-  height: 500px;
+  height: 600px;
 }
 
 .backdrop-image {
@@ -195,11 +205,18 @@ export default {
   object-fit: cover;
   opacity: 0.3;
   z-index: -1;
+  background-color: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
 }
 
 .poster {
+  position: absolute;
   width: 250px;
   height: 300px;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  top: 625px;
+  left: 800px;
 }
 
 .title-likes {
@@ -230,18 +247,18 @@ export default {
 .movie-overview {
   font-size: 16px;
 }
-.content {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
 .overview {
   flex: 1;
   margin-right: 500px;
   width: 400px;
 }
 .comment-wrapper {
+  margin-top: 150px;
   flex: 1;
+}
+.comments {
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 
 </style>

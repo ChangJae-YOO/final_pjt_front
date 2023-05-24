@@ -94,10 +94,10 @@ export default {
 .search-input {
   width: 400px;
 }
-.card-container {
+/* .card-container {
   margin: 0 auto;
   max-width: 1200px;
-}
+} */
 
 .card-row {
   display: flex;
