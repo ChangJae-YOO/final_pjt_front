@@ -151,6 +151,14 @@ export default {
       }
 
       for (const question of this.questionDataLst){
+        if ('queryData1' in question ){
+          'hi'
+        }
+        else{
+          this.isError = true
+          return
+        }
+
         if (question == false){
           this.isError = true
           return
@@ -253,7 +261,6 @@ export default {
             })
             .catch((err) => {
               console.log(err)
-              this.$router.push({name: 'madeThemeView'})
             }) 
 
             })
@@ -261,6 +268,8 @@ export default {
             console.log(err)
           }) 
           }
+
+          this.$router.push({name: 'madeThemeView'})
       })
       .catch((err) => {
         console.log(err)

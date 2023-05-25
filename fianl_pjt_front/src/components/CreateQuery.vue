@@ -81,7 +81,6 @@
       return {
         key_lst : [
           'language',
-          'include_adult',
           'with_genres',
           'without_genres',
           'with_keywords',
@@ -95,18 +94,17 @@
         ],
   
         key_values : {
-          'language': '언어의 영화 추천',
-          'include_adult': '성인 영화 추천',
-          'with_genres': '장르의 영화 추천',
-          'without_genres': '장르를 제외한 영화 추천',
-          'vote_average_gte': '보다 평점 높은 영화 추천',
-          'vote_average_lte': '보다 평점 낮은 영화 추천',
-          'release_date_gte': '보다 늦게 개봉한 영화 추천',
-          'release_date_lte': '보다 일찍 개봉한 영화 추천',
-          'with_runtime_gte': '보다 상영시간이 긴 영화 추천',
-          'with_runtime_lte': '보다 상영시간이 짧은 영화 추천',
-          'with_keywords': '라는 단어가 들어간 영화 추천',
-          'without_keywords': '라는 단어가 안 들어간 영화 추천',
+          'language': '언어의 영화들 포함',
+          'with_genres': '장르의 영화들 포함',
+          'without_genres': '장르를 제외한 영화들 포함',
+          'vote_average_gte': '보다 평점 높은 영화들 포함',
+          'vote_average_lte': '보다 평점 낮은 영화들 포함',
+          'release_date_gte': '보다 늦게 개봉한 영화들 포함',
+          'release_date_lte': '보다 일찍 개봉한 영화들 포함',
+          'with_runtime_gte': '보다 상영시간이 긴 영화들 포함',
+          'with_runtime_lte': '보다 상영시간이 짧은 영화들 포함',
+          'with_keywords': '라는 단어가 들어간 영화들 포함',
+          'without_keywords': '라는 단어가 안 들어간 영화들 포함',
         },
   
         temp_key: '',
