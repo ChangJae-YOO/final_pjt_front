@@ -5,7 +5,7 @@
       <div class="col-md-3">
         <select v-model="temp_value" name="language" v-show="temp_key == 'language'" @input="queryToQuestion" class="form-control" novalidate>
           <option value="en">영어</option>
-          <option value="ko">한국어X</option>
+          <option value="ko">한국어</option>
         </select>
         <select v-model="temp_value" name="with_genres" v-show="temp_key == 'with_genres'" @input="queryToQuestion" class="form-control" novalidate>
           <option value="12">모험</option>
