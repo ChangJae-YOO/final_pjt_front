@@ -12,7 +12,7 @@
     </div>
 
     <div class="card-container">
-      <div class="card-row">
+      <div class="card-roow">
         <div class="card-col" v-for="movie in movies" :key="movie.id">
           <CardComponent :movie="movie" :key="movie.id" />
         </div>
@@ -98,10 +98,10 @@ export default {
   max-width: 1200px;
 } */
 
-.card-row {
+.card-roow {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 200px 20px;
 }
 
 .card-col {

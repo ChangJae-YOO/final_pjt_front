@@ -3,8 +3,14 @@
     <div class="header">
       <div class="backdrop-image" :style="{ backgroundImage: `url(${getBackDropUrl(movie?.backdrop_path)})` }">
       </div>
+    <div class="wrapper">
       <div class="title-likes">
       <h3 class="title">{{ movie?.title }}</h3>
+      <div class="movie-info">
+      <div><h5>{{movie?.vote_average}}   </h5></div>
+      <div v-for="genre in movie?.genres" :key="genre.id"><h5>/ {{genre.name}}</h5></div>
+      </div>
+      </div>
       <div class="likes-count"><div class="heart-icon" :class="{'liked':is_Liked}" @click="likeMovie"><i class="fas fa-heart"></i>
       <span>{{likeCount}}</span>
       </div>
@@ -221,7 +227,9 @@ export default {
 
 .title-likes {
   display: flex;
-  padding: 40px
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 40px;
 }
 .title {
   margin-right:20px
@@ -231,14 +239,20 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin-left:-30px;
 }
 .heart-icon i {
   margin-right: 10px;
+}
+
+.likeCount {
+  font-size: 16px;
 }
 .heart-icon {
   display: inline-block;
   color: gray;
   cursor: pointer;
+  font-size: 24px;
 }
 
 .heart-icon.liked {
@@ -260,5 +274,10 @@ export default {
   margin-top: 100px;
   margin-bottom: 100px;
 }
-
+.movie-info {
+  display: flex;
+}
+.wrapper {
+  display: flex;
+}
 </style>
