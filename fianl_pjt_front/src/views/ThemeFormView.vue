@@ -51,6 +51,12 @@
     </div>
 
     <div class="row">
+      <div class="col-md-8 offset-md-2 text-danger text-center mt-3 mb-3" v-show="isError">
+        질문을 만들고 빈칸을 모두 채워주세요! 
+      </div>
+    </div>
+
+    <div class="row">
       <label for="title" class="col-md-2 col-form-label offset-md-2 text-start mt-3">질문 목록</label>
       <div class="col-md-6" >
         <button type="button" class="btn btn-dark m-2 " v-for="(item, idx) in questionLst" :key="idx" @click="changeIdx(idx)">{{ idx+1 }}</button>
@@ -61,6 +67,7 @@
     <div v-for="(item, idx) in questionLst" :key="item">
       <CreateQuestion @question-to-theme="getQuestion" v-show="idx==nowIdx" :question-idx="idx"/>
       <button class="btn btn-dark mt-3" type="button" v-show="idx==nowIdx" @click="deleteQuestion(idx)">삭제</button>
+      <hr class="col-md-8 offset-md-2 mt-4">
     </div>
   </div>
 </template>
@@ -91,6 +98,8 @@ export default {
       imageFile: '',
       nowIdx: -1,
       keyIdx: 0,
+
+      isError: false,
     }
   },
 
@@ -124,6 +133,50 @@ export default {
 		},
 
     makeTheme: function(){
+      console.log(this.questionDataLst)
+
+      if (this.themeTitle == false){
+        this.isError = true
+        return
+      }
+
+      if (this.themeDescription == false){
+        this.isError = true
+        return
+      }
+
+      if (this.themeDescription == false){
+        this.isError = true
+        return
+      }
+
+      for (const question of this.questionDataLst){
+        if (question == false){
+          this.isError = true
+          return
+        }
+
+        if (question.question == false){
+          this.isError = true
+          return 
+        }
+
+        for (const query of question.queryData1){
+          if (query.value == false){
+            this.isError = true
+            return
+          }
+        }
+
+        for (const query of question.queryData2){
+          if (query.value == false){
+            this.isError = true
+            return
+          }
+        }
+      }
+
+
       const frm = new FormData()
       frm.append('title', this.themeTitle)
       frm.append('description', this.themeDescription)
@@ -200,6 +253,7 @@ export default {
             })
             .catch((err) => {
               console.log(err)
+              this.$router.push({name: 'madeThemeView'})
             }) 
 
             })
