@@ -6,7 +6,7 @@
         <i v-else @click="likeTheme" class="far fa-heart"></i>
       <span class="like-count">{{ likeCount }}</span>
       </span>
-      <button v-if="showDeleteButton" class="delete-btn" type="button" @click="deleteTheme(theme.id)">X</button>
+      <button v-if="showDeleteButton" class="delete-btn" type="button" @click="deleteTheme(theme.id)"><i class="fas fa-times"></i></button>
     </div>
     
     <div class="poster-container" @click="goToDetail" >

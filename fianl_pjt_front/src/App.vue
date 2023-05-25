@@ -9,19 +9,19 @@
     <div class="collapse navbar-collapse ms-4" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item me-4 text-center">
-          <a class="nav-link" aria-current="page" href="/theme-form">테마 만들기</a>
+          <a class="nav-link" aria-current="page" href="/theme-form" @click="checkLogin('theme-form', $event)">테마 만들기</a>
         </li>
         <li class="nav-item me-4 text-center">
           <a class="nav-link" href="/search">영화 검색</a>
         </li>
         <li class="nav-item me-4 text-center">
-          <a class="nav-link" href="/liked-movie">내가 좋아한 영화</a>
+          <a class="nav-link" href="/liked-movie" @click="checkLogin('liked-movie', $event)">내가 좋아한 영화</a>
         </li>
         <li class="nav-item me-4 text-center">
-          <a class="nav-link" href="/liked-theme">내가 좋아한 테마</a>
+          <a class="nav-link" href="/liked-theme" @click="checkLogin('liked-theme', $event)">내가 좋아한 테마</a>
         </li>
         <li class="nav-item me-4 text-center">
-          <a class="nav-link" href="/made-theme">내가 만든 테마</a>
+          <a class="nav-link" href="/made-theme" @click="checkLogin('made-theme', $event)">내가 만든 테마</a>
         </li>
       </ul>
       <div v-if="isLogin">
@@ -46,6 +46,14 @@
 
     methods: {
       ...mapActions(['logout']),
+        checkLogin(routeName, event) {
+        if (!this.isLogin) {
+          event.preventDefault()
+          alert('로그인이 필요한 서비스입니다. 로그인 후 이용해 주세요!')
+        } else {
+          this.$router.push({ name: routeName })
+        }
+      },
     }
   }
   </script>
