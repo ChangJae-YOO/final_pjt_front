@@ -59,7 +59,7 @@ import DetailComment from '@/components/DetailComment'
 import axios from 'axios'
 import { mapActions,mapGetters } from 'vuex'
 
-const API_URL = 'http://cjpjt.pythonanywhere.com'
+const API_URL = 'https://cjpjt.pythonanywhere.com'
 
 export default {
   name: 'DetailView',

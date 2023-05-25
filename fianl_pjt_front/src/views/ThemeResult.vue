@@ -9,7 +9,7 @@ import ResultMovie from '@/components/ResultMovie'
 // import router from '@/router'
 import axios from 'axios'
 
-const API_URL = 'http://cjpjt.pythonanywhere.com'
+const API_URL = 'https://cjpjt.pythonanywhere.com'
 
 export default {
   name: 'ThemeResult',

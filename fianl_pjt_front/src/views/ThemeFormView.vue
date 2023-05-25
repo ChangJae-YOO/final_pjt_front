@@ -77,7 +77,7 @@
 import axios from 'axios'
 import CreateQuestion from '@/components/CreateQuestion.vue'
 
-const API_URL = 'http://cjpjt.pythonanywhere.com'
+const API_URL = 'https://cjpjt.pythonanywhere.com'
 
 export default {
   name: 'ThemeFormView',

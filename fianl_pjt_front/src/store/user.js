@@ -1,7 +1,7 @@
 import axios from 'axios'
 import router from '../router'
 
-const API_URL = 'http://cjpjt.pythonanywhere.com'
+const API_URL = 'https://cjpjt.pythonanywhere.com'
 
 export default {
 
