@@ -5,10 +5,10 @@
   <div class="login-html">
 
       <input id="tab-1" type="radio" name="tab" class="sign-in">
-      <a href="/accounts/login" id="tab-1-link" class="tab" @click="setActiveTab('sign-in')">로그인</a>
+      <router-link :to="{name: 'login'}" id="tab-1-link" class="tab" @click="setActiveTab('sign-in')">로그인</router-link>
 
       <input id="tab-2" type="radio" name="tab" class="sign-up" checked>
-      <a href="/accounts/signup" id="tab-2-link" class="tab" @click="setActiveTab('sign-up')">회원가입</a>
+      <router-link :to="{name: 'signup'}" id="tab-2-link" class="tab" @click="setActiveTab('sign-up')">회원가입</router-link>
 
     <div class="login-form">
       <div class="sign-up-htm">

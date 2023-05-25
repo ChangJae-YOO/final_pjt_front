@@ -2,30 +2,30 @@
   <div id="app">
   <nav class="navbar navbar-expand-xxl navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">ThemTree</a>
+    <router-link class="navbar-brand" :to="{name: 'home'}">ThemTree</router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse ms-4" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item me-4 text-center">
-          <a class="nav-link" aria-current="page" href="/theme-form" @click="checkLogin('theme-form', $event)">테마 만들기</a>
+          <router-link class="nav-link" aria-current="page" :to="{name: 'themeFormView'}" @click="checkLogin('theme-form', $event)">테마 만들기</router-link>
         </li>
         <li class="nav-item me-4 text-center">
-          <a class="nav-link" href="/search">영화 검색</a>
+          <router-link class="nav-link" :to="{name: 'search'}">영화 검색</router-link>
         </li>
         <li class="nav-item me-4 text-center">
-          <a class="nav-link" href="/liked-movie" @click="checkLogin('liked-movie', $event)">내가 좋아한 영화</a>
+          <router-link class="nav-link" :to="{name: 'likedMovieView'}" @click="checkLogin('liked-movie', $event)">내가 좋아한 영화</router-link>
         </li>
         <li class="nav-item me-4 text-center">
-          <a class="nav-link" href="/liked-theme" @click="checkLogin('liked-theme', $event)">내가 좋아한 테마</a>
+          <router-link class="nav-link" :to="{name: 'LikedThemeView'}" @click="checkLogin('liked-theme', $event)">내가 좋아한 테마</router-link>
         </li>
         <li class="nav-item me-4 text-center">
-          <a class="nav-link" href="/made-theme" @click="checkLogin('made-theme', $event)">내가 만든 테마</a>
+          <router-link class="nav-link" :to="{name: 'madeThemeView'}" @click="checkLogin('made-theme', $event)">내가 만든 테마</router-link>
         </li>
       </ul>
       <div v-if="isLogin">
-        <a href="/accounts/login" @click="logout" class="text-light" style="text-decoration:none; margin-right:24px">로그아웃</a>
+        <router-link :to="{name: 'login'}" @click="logout" class="text-light" style="text-decoration:none; margin-right:24px">로그아웃</router-link>
       </div>
       <div class="text-light" style="margin-right:24px" v-else>
       <router-link :to="{name: 'login'}">로그인</router-link> /
