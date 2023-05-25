@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <h2>제목: {{ themeDetail.title }}</h2>
-    <h4>설명: {{ themeDetail.description }}</h4>
+  <div class="theme-container">
+    <div class="theme-text">
+    <h2 class="theme-title">{{ themeDetail.title }}</h2>
+    <h5 class="theme-des">{{ themeDetail.description }}</h5>
+    </div>
     <ThemeQuestion 
     :Question="questionSet[queryIndex]"
     @query-to-question="plusIndex"/>
@@ -82,5 +84,10 @@ export default {
 </script>
 
 <style>
-
+.theme-text {
+  margin: 100px 0;
+}
+.theme-container {
+  margin: 0 auto;
+}
 </style>

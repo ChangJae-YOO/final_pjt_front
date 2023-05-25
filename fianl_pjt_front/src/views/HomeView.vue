@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 v-if="isLogin">Welcome, {{ username }}</h3>
+    <h3 class="hello" v-if="isLogin">Welcome, {{ username }}</h3>
     <div class="texts">
       <span class="rainbow" style="font-size:50px">
         <span class="rainbow-text">테마</span>
@@ -53,6 +53,7 @@
 
     </div>
     <div class="card-container">
+      <h3 class="theme-list">테마 목록</h3>
       <div class="card-row">
         <div class="card-col" v-for="theme in themes" :key="theme.id">
           <CardTheme :theme="theme" :show-delete-button="false"/>
@@ -145,7 +146,8 @@ export default {
   position: relative;
   margin-top: 150px;
   text-align: left;
-  padding-left: 200px
+  padding-left: 350px;
+  height: 400px;
 }
 .carousel {
   max-width: 600px; /* 원하는 캐러셀 최대 너비 설정 */
@@ -169,5 +171,11 @@ export default {
 #carouselExampleCaptions {
   top:-300px;
   left: 150px;
+}
+.theme-list {
+  margin-bottom: 80px;
+}
+.hello {
+  margin-top:100px;
 }
 </style>

@@ -1,8 +1,5 @@
 <template>
 <div>
-  <div style="color:white;">
-    <h1>로고가 들어갑니다zz</h1>
-  </div>
 <div class="login-wrap">
   <div class="login-html">
 
