@@ -26,7 +26,7 @@ import CardComponent from '@/components/CardComponent'
 import axios from 'axios'
 import { mapActions, mapGetters } from 'vuex'
 
-const API_URL = 'http://127.0.0.1:8000'
+const API_URL = 'http://cjpjt.pythonanywhere.com'
 
 export default {
   // detail에서 뒤로가기를 누를때, redirect되는 사이트가 검색페이지이면 movies정보를 유지해주고, 그게아니라면 movies를 비우는 작업

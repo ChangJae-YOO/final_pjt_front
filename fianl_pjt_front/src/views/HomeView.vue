@@ -68,7 +68,7 @@ import { mapActions, mapGetters } from 'vuex'
 import axios from 'axios'
 import CardTheme from '@/components/CardTheme'
 
-const API_URL = 'http://127.0.0.1:8000'
+const API_URL = 'http://cjpjt.pythonanywhere.com'
 
 export default {
   name: 'HomeView',
