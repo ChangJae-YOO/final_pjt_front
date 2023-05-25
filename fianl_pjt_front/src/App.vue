@@ -25,7 +25,7 @@
         </li>
       </ul>
       <div v-if="isLogin">
-        <a href="#" @click="logout" class="text-light" style="text-decoration:none; margin-right:24px">로그아웃</a>
+        <a href="/accounts/login" @click="logout" class="text-light" style="text-decoration:none; margin-right:24px">로그아웃</a>
       </div>
       <div class="text-light" style="margin-right:24px" v-else>
       <router-link :to="{name: 'login'}">로그인</router-link> /
