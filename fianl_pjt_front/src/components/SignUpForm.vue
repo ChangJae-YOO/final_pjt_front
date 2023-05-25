@@ -32,6 +32,9 @@
           <div class="group">
             <button type="submit" class="button">회원가입</button>
           </div>
+          <div class="group text-danger" v-if="isError">
+            양식에 맞게 다시 작성해주세요.
+          </div>
         </form>
         </div>
       </div>
@@ -51,6 +54,7 @@ export default {
       useremail: null,
       password1: null,
       password2: null,
+      isError: false,
     }
   },
 
@@ -68,10 +72,15 @@ export default {
       }
       this.$store.dispatch('signUp', payload)
       .then (() => {
-        this.$router.push({name: 'home'})
+        if (this.$store.state.user.token){
+          this.$router.push({name: 'home'})
+        }
+        else{
+          this.isError=true
+        }
+        
       })
-      .catch((err) => {
-        console.error(err)
+      .catch(() => {
       })
     }
   }

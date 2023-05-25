@@ -25,6 +25,9 @@
           <div class="group">
             <button type="submit" class="button">로그인</button>
           </div>
+          <div class="group text-danger" v-if="isError">
+            아이디 혹은 비밀번호가 틀렸습니다.
+          </div>
         </form>
       </div>
     </div>
@@ -44,6 +47,7 @@ export default {
       username: null,
       password: null,
       error: null,
+      isError: false,
     }
   },
 
@@ -58,7 +62,7 @@ export default {
       const payload = {
         username, password
       }
-      this.$store.dispatch('login', payload)
+      this.isError = this.$store.dispatch('login', payload)
       this.username = null,
       this.password = null
     }
