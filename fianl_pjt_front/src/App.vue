@@ -9,19 +9,19 @@
     <div class="collapse navbar-collapse ms-4" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item me-4 text-center">
-          <router-link class="nav-link" aria-current="page" :to="{name: 'themeFormView'}" @click.native="checkLogin('themeFormView', $event)">테마 만들기</router-link>
+          <router-link class="nav-link" aria-current="page" :to="{name: isLogin ? 'themeFormView' : 'login'}" @click.native="checkLogin('themeFormView', $event)">테마 만들기</router-link>
         </li>
         <li class="nav-item me-4 text-center">
           <router-link class="nav-link" :to="{name: 'search'}">영화 검색</router-link>
         </li>
         <li class="nav-item me-4 text-center">
-          <router-link class="nav-link" :to="{name: 'likedMovieView'}" @click.native="checkLogin('likedMovieView', $event)">내가 좋아한 영화</router-link>
+          <router-link class="nav-link" :to="{name: isLogin ? 'likedMovieView' : 'login'}" @click.native="checkLogin('likedMovieView', $event)">내가 좋아한 영화</router-link>
         </li>
         <li class="nav-item me-4 text-center">
-          <router-link class="nav-link" :to="{name: 'likedThemeView'}" @click.native="checkLogin('likedThemeView', $event)">내가 좋아한 테마</router-link>
+          <router-link class="nav-link" :to="{name: isLogin ? 'likedThemeView' : 'login'}" @click.native="checkLogin('likedThemeView', $event)">내가 좋아한 테마</router-link>
         </li>
         <li class="nav-item me-4 text-center">
-          <router-link class="nav-link" :to="{name: 'madeThemeView'}" @click.native="checkLogin('madeThemeView', $event)">내가 만든 테마</router-link>
+          <router-link class="nav-link" :to="{name: isLogin ? 'madeThemeView' : 'login'}" @click.native="checkLogin('madeThemeView', $event)">내가 만든 테마</router-link>
         </li>
       </ul>
       <div v-if="isLogin">
